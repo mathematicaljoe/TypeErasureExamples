@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(DatabaseHandleWithFake src/main.cpp)
-target_include_directories(DatabaseHandleWithFake PUBLIC src/)
+target_include_directories(DatabaseHandleWithFake PUBLIC src)
 
 find_program(CLANG_TIDY_EXE NAMES "clang-tidy" REQUIRED)
 set(CLANG_TIDY_COMMAND "${CLANG_TIDY_EXE}" "-checks=-*,concurrency-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*")
@@ -14,3 +14,9 @@ set_target_properties(DatabaseHandleWithFake PROPERTIES CXX_CLANG_TIDY "${CLANG_
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 include(ClangFormat)
 target_clangformat_setup(DatabaseHandleWithFake)
+
+find_package(Catch2 3 REQUIRED)
+add_executable(TestDatabaseHandleWithFake src/test.cpp)
+target_include_directories(TestDatabaseHandleWithFake PUBLIC src)
+target_link_libraries(TestDatabaseHandleWithFake PRIVATE Catch2::Catch2WithMain)
+
