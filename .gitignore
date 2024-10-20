@@ -6,3 +6,4 @@
 **/Build
 **/cmake_install.cmake
 **/*.cmake
+**/*.tcl
