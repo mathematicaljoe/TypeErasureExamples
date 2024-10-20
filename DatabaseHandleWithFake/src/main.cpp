@@ -2,6 +2,7 @@
 #include <iostream>
 
 int main() {
-  std::cout << joe::joe_str << " hello world\n";
+  joe::DatabaseHandle database_handle{};
+  std::cout << "make a db handle\n";
   return 0;
 }
